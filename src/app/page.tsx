@@ -3,8 +3,9 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { totalBalance, openPositions, totalPnl, recentTrades } from '@/lib/data';
-import { DollarSign, TrendingUp, TrendingDown, PackageOpen } from 'lucide-react';
+import { DollarSign, TrendingUp, TrendingDown, PackageOpen, ArrowUpRight } from 'lucide-react';
 import { DashboardChart } from './dashboard-chart';
+import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
   return (
@@ -55,9 +56,17 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
-                <CardTitle>Recent Trades</CardTitle>
-                <CardDescription>A list of your most recent trades.</CardDescription>
+              <CardHeader className="flex flex-row items-center">
+                <div className="grid gap-2">
+                  <CardTitle>Recent Trades</CardTitle>
+                  <CardDescription>A list of your most recent trades.</CardDescription>
+                </div>
+                <Button asChild size="sm" className="ml-auto gap-1">
+                  <a href="/reports">
+                    View All
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </Button>
               </CardHeader>
               <CardContent className="p-0">
                 <Table>
