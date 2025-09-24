@@ -18,7 +18,7 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
 
-           <Card>
+          <Card>
             <CardHeader>
               <CardTitle>API Keys</CardTitle>
               <CardDescription>Manage your API keys for MT5, Binance, and Exness.</CardDescription>
@@ -35,7 +35,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">Security settings will be available here.</p>
-            </Content>
+            </CardContent>
           </Card>
         </div>
       </main>
