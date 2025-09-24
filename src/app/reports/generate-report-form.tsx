@@ -103,6 +103,16 @@ export function GenerateReportForm() {
             {errors.winRate && <p className="col-span-4 text-red-500 text-xs text-right">{errors.winRate.message}</p>}
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="averagePnl" className="text-right">Average P&L</Label>
+            <Input id="averagePnl" type="number" {...register('averagePnl')} className="col-span-3" />
+            {errors.averagePnl && <p className="col-span-4 text-red-500 text-xs text-right">{errors.averagePnl.message}</p>}
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="maxDrawdown" className="text-right">Max Drawdown (%)</Label>
+            <Input id="maxDrawdown" type="number" {...register('maxDrawdown')} className="col-span-3" />
+            {errors.maxDrawdown && <p className="col-span-4 text-red-500 text-xs text-right">{errors.maxDrawdown.message}</p>}
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="significantTrends" className="text-right">Trends</Label>
             <Textarea id="significantTrends" {...register('significantTrends')} className="col-span-3" />
             {errors.significantTrends && <p className="col-span-4 text-red-500 text-xs text-right">{errors.significantTrends.message}</p>}

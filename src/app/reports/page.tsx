@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { GenerateReportForm } from './generate-report-form';
+import Link from 'next/link';
 
 export default function ReportsPage() {
   return (
@@ -49,13 +50,11 @@ export default function ReportsPage() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem>
-                            <Download className="mr-2 h-4 w-4" />
-                            Download PDF
-                          </DropdownMenuItem>
-                           <DropdownMenuItem>
-                            <Download className="mr-2 h-4 w-4" />
-                            Download Excel
+                          <DropdownMenuItem asChild>
+                            <Link href={report.file_url} target="_blank" download>
+                              <Download className="mr-2 h-4 w-4" />
+                              Download PDF
+                            </Link>
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>

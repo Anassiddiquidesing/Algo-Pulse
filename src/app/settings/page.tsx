@@ -35,7 +35,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">Security settings will be available here.</p>
-            </CardContent>
+            </Content>
           </Card>
         </div>
       </main>
