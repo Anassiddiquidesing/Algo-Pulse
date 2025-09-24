@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ChartContainer, ChartTooltip, ChartTooltipContent, BarChart, Bar, XAxis, YAxis } from '@/components/ui/chart';
 import { Badge } from '@/components/ui/badge';
 import { totalBalance, openPositions, totalPnl, equityData, recentTrades } from '@/lib/data';
-import { DollarSign, TrendingUp, TrendingDown, PackageOpen, MoreVertical } from 'lucide-react';
+import { DollarSign, TrendingUp, TrendingDown, PackageOpen } from 'lucide-react';
 
 const chartConfig = {
   equity: {
