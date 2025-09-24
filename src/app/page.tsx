@@ -1,17 +1,10 @@
 import { Header } from '@/components/layout/header';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ChartContainer, ChartTooltip, ChartTooltipContent, BarChart, Bar, XAxis, YAxis } from '@/components/ui/chart';
 import { Badge } from '@/components/ui/badge';
-import { totalBalance, openPositions, totalPnl, equityData, recentTrades } from '@/lib/data';
+import { totalBalance, openPositions, totalPnl, recentTrades } from '@/lib/data';
 import { DollarSign, TrendingUp, TrendingDown, PackageOpen } from 'lucide-react';
-
-const chartConfig = {
-  equity: {
-    label: 'Equity',
-    color: 'hsl(var(--primary))',
-  },
-};
+import { DashboardChart } from './dashboard-chart';
 
 export default function DashboardPage() {
   return (
@@ -58,14 +51,7 @@ export default function DashboardPage() {
                 <CardDescription>Your portfolio performance over the last 30 days.</CardDescription>
               </CardHeader>
               <CardContent>
-                <ChartContainer config={chartConfig} className="h-[250px] w-full">
-                  <BarChart accessibilityLayer data={equityData}>
-                    <XAxis dataKey="date" tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} />
-                    <YAxis tickLine={false} axisLine={false} tickMargin={8} tickFormatter={(value) => `$${value / 1000}k`} />
-                    <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-                    <Bar dataKey="equity" fill="var(--color-equity)" radius={4} />
-                  </BarChart>
-                </ChartContainer>
+                <DashboardChart />
               </CardContent>
             </Card>
             <Card>
