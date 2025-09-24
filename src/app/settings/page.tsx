@@ -20,16 +20,6 @@ export default function SettingsPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle>API Keys</CardTitle>
-              <CardDescription>Manage your API keys for MT5, Binance, and Exness.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">API key management will be available here.</p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
               <CardTitle>Security</CardTitle>
               <CardDescription>Manage security settings like kill-switch and user roles.</CardDescription>
             </CardHeader>

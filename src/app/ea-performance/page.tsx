@@ -1,21 +1,43 @@
+'use client';
+import { useState, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { eaPerformance, eaTrades, eaLogs } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
-import { Percent, Target, TrendingDown, ClipboardList } from 'lucide-react';
+import { Percent, Target, TrendingDown, ClipboardList, RefreshCw } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
 
 export default function EaPerformancePage() {
+  const [lastUpdated, setLastUpdated] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLastUpdated(new Date());
+    }, 5000); // Updates every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       <Header title="EA Performance" />
       <main className="flex-1 p-4 md:p-6">
         <div className="grid gap-6">
           <Card>
-            <CardHeader>
-              <CardTitle>EA Performance: SCALPER_V3</CardTitle>
-              <CardDescription>Detailed performance metrics for the selected Expert Advisor.</CardDescription>
+            <CardHeader className="flex flex-row items-center justify-between">
+              <div>
+                <CardTitle>EA Performance: SCALPER_V3</CardTitle>
+                <CardDescription>Detailed performance metrics for the selected Expert Advisor.</CardDescription>
+              </div>
+               <div className="flex items-center gap-2">
+                <p className="text-sm text-muted-foreground">
+                  Last updated: {lastUpdated.toLocaleTimeString()}
+                </p>
+                <Button variant="outline" size="icon" onClick={() => setLastUpdated(new Date())}>
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+              </div>
             </CardHeader>
           </Card>
           

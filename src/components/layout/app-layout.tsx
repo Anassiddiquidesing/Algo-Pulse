@@ -2,7 +2,7 @@
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Bot, FileText, LayoutDashboard, Settings, Moon, Sun, Monitor } from 'lucide-react';
+import { Bot, FileText, LayoutDashboard, Settings, Moon, Sun, Monitor, Link2 } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -51,6 +51,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   <Link href="/ea-performance"><Bot /><span>EA Performance</span></Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={isActive('/accounts')} tooltip="Accounts">
+                  <Link href="/accounts"><Link2 /><span>Accounts</span></Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
           <SidebarFooter>
@@ -82,7 +87,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                       <DropdownMenuItem onClick={() => setTheme('dark')}>
                         Dark
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => setTheme('neon')}>
+                       <DropdownMenuItem onClick={() => setTheme('neon')}>
                         Neon
                       </DropdownMenuItem>
                       <DropdownMenuItem onClick={() => setTheme('system')}>
@@ -92,7 +97,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   </DropdownMenuSub>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/settings">
+                     <Link href="/settings">
                       <Settings className="mr-2 h-4 w-4" />
                       <span>Settings</span>
                     </Link>
