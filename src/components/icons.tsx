@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react';
 
 export const Logo = (props: SVGProps<SVGSVGElement>) => (
-  <div className="flex items-center gap-2 font-semibold text-lg" aria-label="TradeFlow logo">
+  <div className="flex items-center gap-2 font-semibold text-lg" aria-label="AlgoPulse logo">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -17,7 +17,7 @@ export const Logo = (props: SVGProps<SVGSVGElement>) => (
       <path d="m19 9-5 5-4-4-3 3" />
     </svg>
     <span className="hidden text-sidebar-foreground group-data-[state=expanded]:inline">
-      TradeFlow
+      AlgoPulse
     </span>
   </div>
 );

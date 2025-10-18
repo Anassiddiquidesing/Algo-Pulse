@@ -15,7 +15,7 @@ export default function DashboardPage() {
       <main className="flex-1 p-4 md:p-6">
         <div className="grid gap-6">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
+            <Card className="glass-card">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Balance</CardTitle>
                 <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -25,7 +25,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-muted-foreground">+2.1% from last month</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="glass-card">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Open Positions</CardTitle>
                 <PackageOpen className="h-4 w-4 text-muted-foreground" />
@@ -35,7 +35,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-muted-foreground">Across all accounts</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="glass-card">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total P&L (Today)</CardTitle>
                 {totalPnl >= 0 ? <TrendingUp className="h-4 w-4 text-green-500" /> : <TrendingDown className="h-4 w-4 text-red-500" />}
@@ -47,7 +47,7 @@ export default function DashboardPage() {
             </Card>
           </div>
           <div className="grid gap-6 lg:grid-cols-2">
-            <Card>
+            <Card className="glass-card">
               <CardHeader>
                 <CardTitle>Equity Curve</CardTitle>
                 <CardDescription>Your portfolio performance over the last 30 days.</CardDescription>
@@ -56,7 +56,7 @@ export default function DashboardPage() {
                 <DashboardChart />
               </CardContent>
             </Card>
-            <Card>
+            <Card className="glass-card">
               <CardHeader className="flex flex-row items-center">
                 <div className="grid gap-2">
                   <CardTitle>Recent Trades</CardTitle>

@@ -1,8 +1,8 @@
 'use client';
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Bot, FileText, LayoutDashboard, Settings, Moon, Sun, Link2 } from 'lucide-react';
+import { Bot, FileText, LayoutDashboard, Settings, Moon, Sun, Link2, LogOut } from 'lucide-react';
 import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -20,12 +20,42 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from '../ui/button';
 import { useTheme } from 'next-themes';
+import { useUser, useAuth } from '@/firebase';
+import { useEffect } from 'react';
+import { signOut } from 'firebase/auth';
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, isUserLoading } = useUser();
+  const auth = useAuth();
+  
   const isActive = (path: string) => pathname === path;
   const userAvatar = PlaceHolderImages.find(p => p.id === 'user-avatar');
   const { setTheme } = useTheme();
+
+  useEffect(() => {
+    if (!isUserLoading && !user) {
+      router.push('/login');
+    }
+  }, [isUserLoading, user, router]);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push('/login');
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  };
+
+  if (isUserLoading || !user) {
+     return (
+      <div className="flex min-h-screen w-full items-center justify-center bg-background">
+        <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
+      </div>
+    );
+  }
 
   return (
     <SidebarProvider>
@@ -64,10 +94,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   <Button variant="ghost" className="h-10 w-10 p-0 justify-center group-data-[state=expanded]:w-full group-data-[state=expanded]:justify-start group-data-[state=expanded]:px-2">
                      <Avatar className="h-8 w-8">
                       {userAvatar && <AvatarImage src={userAvatar.imageUrl} alt={userAvatar.description} data-ai-hint={userAvatar.imageHint} />}
-                      <AvatarFallback>U</AvatarFallback>
+                      <AvatarFallback>{user?.email?.[0]?.toUpperCase() ?? 'A'}</AvatarFallback>
                     </Avatar>
                     <div className="ml-2 text-left hidden group-data-[state=expanded]:inline">
-                      <p className="text-sm font-medium">Anonymous</p>
+                      <p className="text-sm font-medium">{user?.email}</p>
                     </div>
                    </Button>
                 </DropdownMenuTrigger>
@@ -87,6 +117,9 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                       <DropdownMenuItem onClick={() => setTheme('dark')}>
                         Dark
                       </DropdownMenuItem>
+                       <DropdownMenuItem onClick={() => setTheme('dark-premium')}>
+                        Premium
+                      </DropdownMenuItem>
                        <DropdownMenuItem onClick={() => setTheme('neon')}>
                         Neon
                       </DropdownMenuItem>
@@ -102,9 +135,15 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                       <span>Settings</span>
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <div className="hidden text-center text-xs text-muted-foreground group-data-[state=expanded]:inline">
+                <p>💹 “AlgoPulse — Watch your trading intelligence come alive.”</p>
+              </div>
           </SidebarFooter>
         </Sidebar>
         <SidebarInset className="flex-1 flex flex-col">
