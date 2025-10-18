@@ -104,7 +104,7 @@ export default function EaPerformancePage() {
                       <TableRow key={trade.id}>
                         <TableCell>{trade.symbol}</TableCell>
                         <TableCell>
-                          <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700' : 'bg-red-500/20 text-red-700'}>{trade.side}</Badge>
+                           <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
                         </TableCell>
                         <TableCell>{trade.volume.toFixed(2)}</TableCell>
                         <TableCell className={`text-right ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>

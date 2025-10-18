@@ -6,6 +6,7 @@ import { totalBalance, openPositions, totalPnl, recentTrades } from '@/lib/data'
 import { DollarSign, TrendingUp, TrendingDown, PackageOpen, ArrowUpRight } from 'lucide-react';
 import { DashboardChart } from './dashboard-chart';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   return (
@@ -62,10 +63,10 @@ export default function DashboardPage() {
                   <CardDescription>A list of your most recent trades.</CardDescription>
                 </div>
                 <Button asChild size="sm" className="ml-auto gap-1">
-                  <a href="/reports">
+                  <Link href="/reports">
                     View All
                     <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  </Link>
                 </Button>
               </CardHeader>
               <CardContent className="p-0">
@@ -83,7 +84,7 @@ export default function DashboardPage() {
                       <TableRow key={trade.id}>
                         <TableCell className="font-medium">{trade.symbol}</TableCell>
                         <TableCell>
-                          <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30 dark:bg-green-500/10 dark:text-green-400' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30 dark:bg-red-500/10 dark:text-red-400'}>{trade.side}</Badge>
+                          <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
                         </TableCell>
                         <TableCell className={`text-right font-medium ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>{trade.pnl.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TableCell>
                         <TableCell>{trade.source}</TableCell>
