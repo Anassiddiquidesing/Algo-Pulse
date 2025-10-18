@@ -20,54 +20,12 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from '../ui/button';
 import { useTheme } from 'next-themes';
-import { useUser, useAuth } from '@/firebase';
-import { useEffect } from 'react';
-import { signOut } from 'firebase/auth';
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
-  const { user, loading } = useUser();
-  const auth = useAuth();
-  
   const isActive = (path: string) => pathname === path;
   const userAvatar = PlaceHolderImages.find(p => p.id === 'user-avatar');
   const { setTheme } = useTheme();
-
-  useEffect(() => {
-    if (!loading && !user && pathname !== '/login' && pathname !== '/signup') {
-      router.push('/login');
-    }
-  }, [user, loading, pathname, router]);
-
-  const handleLogout = async () => {
-    if (auth) {
-      await signOut(auth);
-      router.push('/login');
-    }
-  };
-  
-  if (loading && pathname !== '/login' && pathname !== '/signup') {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
-
-  if (!user && pathname !== '/login' && pathname !== '/signup') {
-    return null;
-  }
-  
-  if (user && (pathname === '/login' || pathname === '/signup')) {
-    router.push('/');
-    return null;
-  }
-  
-  if (pathname === '/login' || pathname === '/signup') {
-    return <>{children}</>;
-  }
-
 
   return (
     <SidebarProvider>
@@ -105,11 +63,11 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="h-10 w-10 p-0 justify-center group-data-[state=expanded]:w-full group-data-[state=expanded]:justify-start group-data-[state=expanded]:px-2">
                      <Avatar className="h-8 w-8">
-                      {userAvatar && <AvatarImage src={user?.photoURL || userAvatar.imageUrl} alt={user?.displayName || userAvatar.description} data-ai-hint={userAvatar.imageHint} />}
-                      <AvatarFallback>{user?.email?.[0].toUpperCase() || 'U'}</AvatarFallback>
+                      {userAvatar && <AvatarImage src={userAvatar.imageUrl} alt={userAvatar.description} data-ai-hint={userAvatar.imageHint} />}
+                      <AvatarFallback>U</AvatarFallback>
                     </Avatar>
                     <div className="ml-2 text-left hidden group-data-[state=expanded]:inline">
-                      <p className="text-sm font-medium">{user?.displayName || user?.email}</p>
+                      <p className="text-sm font-medium">Anonymous</p>
                     </div>
                    </Button>
                 </DropdownMenuTrigger>
@@ -145,8 +103,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>Support</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
           </SidebarFooter>
