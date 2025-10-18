@@ -1,0 +1,289 @@
+{
+  "entities": {
+    "Account": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Account",
+      "type": "object",
+      "description": "Represents a trading account.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Account entity."
+        },
+        "source": {
+          "type": "string",
+          "description": "The source of the account (e.g., MT5, Exness, Binance)."
+        },
+        "balance": {
+          "type": "number",
+          "description": "The current balance of the account."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "The date and time when the account was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "balance",
+        "createdAt"
+      ]
+    },
+    "Trade": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Trade",
+      "type": "object",
+      "description": "Represents a single trading transaction.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Trade entity."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "Reference to Account. (Relationship: Account 1:N Trade)"
+        },
+        "source": {
+          "type": "string",
+          "description": "The source of the trade (e.g., MT5, Exness, Binance)."
+        },
+        "symbol": {
+          "type": "string",
+          "description": "The trading symbol (e.g., EURUSD, BTCUSDT)."
+        },
+        "side": {
+          "type": "string",
+          "description": "The side of the trade (e.g., buy, sell)."
+        },
+        "volume": {
+          "type": "number",
+          "description": "The volume of the trade."
+        },
+        "entryPrice": {
+          "type": "number",
+          "description": "The entry price of the trade."
+        },
+        "exitPrice": {
+          "type": "number",
+          "description": "The exit price of the trade."
+        },
+        "pnl": {
+          "type": "number",
+          "description": "The profit and loss of the trade."
+        },
+        "openedAt": {
+          "type": "string",
+          "description": "The date and time when the trade was opened.",
+          "format": "date-time"
+        },
+        "closedAt": {
+          "type": "string",
+          "description": "The date and time when the trade was closed.",
+          "format": "date-time"
+        },
+        "eaId": {
+          "type": "string",
+          "description": "Reference to EaRun. (Relationship: EaRun 1:N Trade). The ID of the Expert Advisor that executed the trade."
+        }
+      },
+      "required": [
+        "id",
+        "accountId",
+        "source",
+        "symbol",
+        "side",
+        "volume",
+        "entryPrice",
+        "exitPrice",
+        "pnl",
+        "openedAt",
+        "closedAt",
+        "eaId"
+      ]
+    },
+    "Report": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Report",
+      "type": "object",
+      "description": "Represents a generated report.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Report entity."
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of report (e.g., weekly, monthly)."
+        },
+        "from": {
+          "type": "string",
+          "description": "The start date for the report period.",
+          "format": "date-time"
+        },
+        "to": {
+          "type": "string",
+          "description": "The end date for the report period.",
+          "format": "date-time"
+        },
+        "summary": {
+          "type": "string",
+          "description": "A summary of the report contents."
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "The URL where the report file is stored.",
+          "format": "uri"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "The date and time when the report was created.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "from",
+        "to",
+        "summary",
+        "fileUrl",
+        "createdAt"
+      ]
+    },
+    "EaRun": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "EaRun",
+      "type": "object",
+      "description": "Represents a single execution run of an Expert Advisor.",
+      "properties": {
+        "eaId": {
+          "type": "string",
+          "description": "Unique identifier for the EaRun entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the Expert Advisor."
+        },
+        "startTime": {
+          "type": "string",
+          "description": "The date and time when the EA run started.",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": "string",
+          "description": "The date and time when the EA run ended.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the EA run (e.g., running, completed, error)."
+        },
+        "logs": {
+          "type": "string",
+          "description": "Log data for the EA run."
+        }
+      },
+      "required": [
+        "eaId",
+        "name",
+        "startTime",
+        "endTime",
+        "status",
+        "logs"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}/accounts/{accountId}",
+        "definition": {
+          "entityName": "Account",
+          "schema": {
+            "$ref": "#/backend/entities/Account"
+          },
+          "description": "Stores trading accounts owned by a specific user. The 'userId' path parameter ensures that only the authenticated user can access their own accounts.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "accountId",
+              "description": "The unique identifier of the account."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/accounts/{accountId}/trades/{tradeId}",
+        "definition": {
+          "entityName": "Trade",
+          "schema": {
+            "$ref": "#/backend/entities/Trade"
+          },
+          "description": "Stores trading transactions for a specific account owned by a user.  The 'userId' and 'accountId' path parameters ensure that only the authenticated user can access trades associated with their account.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "accountId",
+              "description": "The unique identifier of the account."
+            },
+            {
+              "name": "tradeId",
+              "description": "The unique identifier of the trade."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/reports/{reportId}",
+        "definition": {
+          "entityName": "Report",
+          "schema": {
+            "$ref": "#/backend/entities/Report"
+          },
+          "description": "Stores reports generated for a specific user. The 'userId' path parameter ensures that only the authenticated user can access their own reports.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "reportId",
+              "description": "The unique identifier of the report."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/ea_runs/{eaId}",
+        "definition": {
+          "entityName": "EaRun",
+          "schema": {
+            "$ref": "#/backend/entities/EaRun"
+          },
+          "description": "Stores Expert Advisor execution runs. This collection is global and requires additional security measures to control access. Consider adding a field indicating the owner (userId) if runs are associated with specific users.",
+          "params": [
+            {
+              "name": "eaId",
+              "description": "The unique identifier of the EA run."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to be secure, scalable, and easily debuggable, adhering to the principles of Authorization Independence, Clarity of Intent, DBAC, and QAPs. The core strategy is to leverage path-based ownership for user-specific data and membership maps for collaborative data, combined with strategic denormalization to avoid `get()` calls in security rules.\n\n**Authorization Independence:**\n\n*   Authorization independence is achieved by using path-based ownership for user-related data (accounts, trades, reports). This means that access control is determined by the path itself (e.g., `/users/{userId}/accounts/{accountId}`), eliminating the need for `get()` calls to parent documents.\n\n**Structural Segregation:**\n\n*   Data with different access requirements is segregated into different collections to simplify security rules. For example, user accounts are stored under `/users/{userId}/accounts/{accountId}`,\n\n**Access Modeling:**\n\n*   Path-Based Ownership: The `/users/{userId}` path prefix ensures that only the authenticated user can access their own accounts, trades, and reports. This is a straightforward and secure way to manage private data.\n\n**QAPs Support:**\n\n*   Secure List Operations: By using path-based ownership and segregating data based on access needs, the structure supports secure `list` operations. Rules can easily check if `request.auth.uid` matches the `userId` in the path, ensuring that only authorized users can list their own resources.\n\n**Invariants:**\n\n*   The structure supports the integrity of ownership, timestamps, and denormalized data. Ownership is enforced by the path structure, timestamps can be validated in rules, and denormalized data (if needed) can be validated against the original data.\n"
+  }
+}
