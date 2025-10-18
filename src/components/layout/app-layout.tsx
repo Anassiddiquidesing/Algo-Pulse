@@ -1,6 +1,6 @@
 'use client';
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter, SidebarHeader } from '@/components/ui/sidebar';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Bot, FileText, LayoutDashboard, Settings, Moon, Sun, Link2 } from 'lucide-react';
 import { Logo } from '@/components/icons';
