@@ -12,7 +12,7 @@ import { Logo } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
 
 export default function SignupPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('misssabasiddiqui@gmail.com');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
