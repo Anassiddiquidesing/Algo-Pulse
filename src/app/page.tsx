@@ -13,8 +13,8 @@ export default function DashboardPage() {
     <>
       <Header title="Dashboard" />
       <main className="flex-1 p-4 md:p-6">
-        <div className="grid gap-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:gap-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
             <Card className="glass-card">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Balance</CardTitle>
@@ -46,7 +46,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           </div>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2 md:gap-6">
             <Card className="glass-card">
               <CardHeader>
                 <CardTitle>Equity Curve</CardTitle>
@@ -70,28 +70,30 @@ export default function DashboardPage() {
                 </Button>
               </CardHeader>
               <CardContent className="p-0">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Symbol</TableHead>
-                      <TableHead>Side</TableHead>
-                      <TableHead className="text-right">P&L</TableHead>
-                      <TableHead>Source</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {recentTrades.map((trade) => (
-                      <TableRow key={trade.id}>
-                        <TableCell className="font-medium">{trade.symbol}</TableCell>
-                        <TableCell>
-                          <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
-                        </TableCell>
-                        <TableCell className={`text-right font-medium ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>{trade.pnl.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TableCell>
-                        <TableCell>{trade.source}</TableCell>
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Symbol</TableHead>
+                        <TableHead>Side</TableHead>
+                        <TableHead className="text-right">P&L</TableHead>
+                        <TableHead>Source</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {recentTrades.map((trade) => (
+                        <TableRow key={trade.id}>
+                          <TableCell className="font-medium">{trade.symbol}</TableCell>
+                          <TableCell>
+                            <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
+                          </TableCell>
+                          <TableCell className={`text-right font-medium ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>{trade.pnl.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</TableCell>
+                          <TableCell>{trade.source}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </CardContent>
             </Card>
           </div>

@@ -20,7 +20,7 @@ const chartConfig = {
 
 export function DashboardChart() {
   return (
-    <ChartContainer config={chartConfig} className="h-[250px] w-full">
+    <ChartContainer config={chartConfig} className="h-[200px] w-full sm:h-[250px]">
       <BarChart accessibilityLayer data={equityData}>
         <XAxis
           dataKey="date"

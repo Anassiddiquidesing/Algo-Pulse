@@ -23,9 +23,9 @@ export default function EaPerformancePage() {
     <>
       <Header title="EA Performance" />
       <main className="flex-1 p-4 md:p-6">
-        <div className="grid gap-6">
+        <div className="grid gap-4 md:gap-6">
           <Card>
-            <CardHeader className="flex flex-row items-center justify-between">
+            <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
                 <CardTitle>EA Performance: SCALPER_V3</CardTitle>
                 <CardDescription>Detailed performance metrics for the selected Expert Advisor.</CardDescription>
@@ -41,7 +41,7 @@ export default function EaPerformancePage() {
             </CardHeader>
           </Card>
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Win Rate</CardTitle>
@@ -84,36 +84,38 @@ export default function EaPerformancePage() {
             </Card>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2 md:gap-6">
             <Card>
               <CardHeader>
                 <CardTitle>Trades History</CardTitle>
               </CardHeader>
               <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Symbol</TableHead>
-                      <TableHead>Side</TableHead>
-                      <TableHead>Volume</TableHead>
-                      <TableHead className="text-right">P&L</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {eaTrades.map(trade => (
-                      <TableRow key={trade.id}>
-                        <TableCell>{trade.symbol}</TableCell>
-                        <TableCell>
-                           <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
-                        </TableCell>
-                        <TableCell>{trade.volume.toFixed(2)}</TableCell>
-                        <TableCell className={`text-right ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {trade.pnl.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-                        </TableCell>
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Symbol</TableHead>
+                        <TableHead>Side</TableHead>
+                        <TableHead>Volume</TableHead>
+                        <TableHead className="text-right">P&L</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {eaTrades.map(trade => (
+                        <TableRow key={trade.id}>
+                          <TableCell>{trade.symbol}</TableCell>
+                          <TableCell>
+                             <Badge variant={trade.side === 'BUY' ? 'default' : 'destructive'} className={trade.side === 'BUY' ? 'bg-green-500/20 text-green-700 hover:bg-green-500/30' : 'bg-red-500/20 text-red-700 hover:bg-red-500/30'}>{trade.side}</Badge>
+                          </TableCell>
+                          <TableCell>{trade.volume.toFixed(2)}</TableCell>
+                          <TableCell className={`text-right ${trade.pnl >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {trade.pnl.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
               </CardContent>
             </Card>
             <Card>
