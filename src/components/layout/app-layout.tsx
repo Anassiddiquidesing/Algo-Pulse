@@ -41,6 +41,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }, [isUserLoading, user, router]);
 
   const handleLogout = async () => {
+    if (!auth) return;
     try {
       await signOut(auth);
       router.push('/login');
@@ -50,12 +51,22 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   };
 
   if (isUserLoading || !user) {
+     const isAuthPage = pathname === '/login' || pathname === '/signup';
+     if (isAuthPage) {
+       return <>{children}</>;
+     }
      return (
       <div className="flex min-h-screen w-full items-center justify-center bg-background">
         <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
       </div>
     );
   }
+  
+  const isAuthPage = pathname === '/login' || pathname === '/signup';
+  if (isAuthPage) {
+    return <>{children}</>;
+  }
+
 
   return (
     <SidebarProvider>
