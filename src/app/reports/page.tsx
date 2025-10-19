@@ -3,17 +3,22 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { reports } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { Download, MoreVertical } from 'lucide-react';
+import { Download, MoreVertical, FileJson2, Newspaper, Image } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { GenerateReportForm } from './generate-report-form';
 import Link from 'next/link';
 
 export default function ReportsPage() {
+  const handleDownload = (format: string, reportId: string) => {
+    alert(`Downloading report ${reportId} as ${format} (functionality to be implemented).`);
+  };
+
   return (
     <>
       <Header title="Performance Reports" />
@@ -50,11 +55,22 @@ export default function ReportsPage() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem asChild>
-                            <Link href={report.file_url} target="_blank" download>
-                              <Download className="mr-2 h-4 w-4" />
-                              Download PDF
-                            </Link>
+                          <DropdownMenuItem onClick={() => handleDownload('PDF', report.id)}>
+                            <Download className="mr-2 h-4 w-4" />
+                            Download PDF
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => handleDownload('Word', report.id)}>
+                            <Newspaper className="mr-2 h-4 w-4" />
+                            Export as Word
+                          </DropdownMenuItem>
+                           <DropdownMenuItem onClick={() => handleDownload('Excel', report.id)}>
+                            <FileJson2 className="mr-2 h-4 w-4" />
+                            Export as Excel
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                           <DropdownMenuItem onClick={() => handleDownload('PNG', report.id)}>
+                             <Image className="mr-2 h-4 w-4" />
+                            Save as PNG
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
