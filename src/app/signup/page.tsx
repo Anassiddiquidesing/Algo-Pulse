@@ -55,9 +55,14 @@ export default function SignupPage() {
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
-              <div className="mx-auto mb-4">
+            <motion.div
+              className="mx-auto mb-4"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring' }}
+            >
               <Logo />
-            </div>
+            </motion.div>
             <CardTitle className="text-2xl">Create an Account</CardTitle>
             <CardDescription>Join AlgoPulse and start tracking your trading performance.</CardDescription>
           </CardHeader>
@@ -92,7 +97,14 @@ export default function SignupPage() {
                   className="absolute right-1 top-7 h-7 w-7"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  <motion.div
+                    key={showPassword ? 'eye-off' : 'eye'}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </motion.div>
                 </Button>
               </div>
               <Button type="submit" className="w-full" disabled={loading}>
