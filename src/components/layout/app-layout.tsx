@@ -105,10 +105,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   <Button variant="ghost" className="h-10 w-10 p-0 justify-center group-data-[state=expanded]:w-full group-data-[state=expanded]:justify-start group-data-[state=expanded]:px-2">
                      <Avatar className="h-8 w-8">
                       {userAvatar && <AvatarImage src={userAvatar.imageUrl} alt={userAvatar.description} data-ai-hint={userAvatar.imageHint} />}
-                      <AvatarFallback>{user?.email?.[0]?.toUpperCase() ?? 'A'}</AvatarFallback>
+                      <AvatarFallback>{user?.displayName?.[0]?.toUpperCase() ?? user?.email?.[0]?.toUpperCase() ?? 'A'}</AvatarFallback>
                     </Avatar>
                     <div className="ml-2 text-left hidden group-data-[state=expanded]:inline">
-                      <p className="text-sm font-medium">{user?.email}</p>
+                      <p className="text-sm font-medium">{user?.displayName ?? user?.email}</p>
                     </div>
                    </Button>
                 </DropdownMenuTrigger>

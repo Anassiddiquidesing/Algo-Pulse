@@ -14,6 +14,8 @@ import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
 
 export default function SignupPage() {
+  const [firstName, setFirstName] = useState('Anas');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('misssabasiddiqui@gmail.com');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -26,10 +28,12 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     try {
+      // We are only passing email and password to Firebase Auth for creation.
+      // The name would typically be saved to a Firestore document with the user's UID.
       await initiateEmailSignUp(auth, email, password);
       toast({
         title: "Signup Successful",
-        description: "Redirecting to your dashboard...",
+        description: `Welcome, ${firstName}! Redirecting to your dashboard...`,
       });
       setTimeout(() => router.push('/'), 1000);
     } catch (error: any) {
@@ -46,9 +50,9 @@ export default function SignupPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden animated-gradient">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: -20 }}
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
@@ -61,10 +65,34 @@ export default function SignupPage() {
               <Logo />
             </motion.div>
             <CardTitle className="text-2xl">Create an Account</CardTitle>
-            <CardDescription>Join AlgoPulse and start tracking your trading performance.</CardDescription>
+            <CardDescription>Join AlgoPulse to start your trading journey.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSignUp} className="space-y-4">
+               <div className="flex flex-col sm:flex-row gap-4">
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Input
+                    id="firstName"
+                    placeholder="Anas"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="bg-transparent"
+                  />
+                </div>
+                <div className="space-y-2 flex-1">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Input
+                    id="lastName"
+                    placeholder="Khan"
+                    required
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="bg-transparent"
+                  />
+                </div>
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
