@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
-  title: 'TradeFlow',
+  title: 'AlgoPulse',
   description: 'A trading performance web application.',
 };
 
