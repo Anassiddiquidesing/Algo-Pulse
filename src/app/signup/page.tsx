@@ -48,7 +48,7 @@ export default function SignupPage() {
       <motion.div
         initial={{ opacity: 0, y: -20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
@@ -56,7 +56,7 @@ export default function SignupPage() {
               className="mx-auto mb-4"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 300, damping: 20 }}
             >
               <Logo />
             </motion.div>
@@ -98,7 +98,7 @@ export default function SignupPage() {
                     key={showPassword ? 'eye-off' : 'eye'}
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.15 }}
                   >
                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </motion.div>
