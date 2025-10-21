@@ -46,8 +46,8 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden animated-gradient">
       <motion.div
-        initial={{ opacity: 0, y: -20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
