@@ -12,6 +12,8 @@ import { Logo } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
+import { AuthBackgroundSlideshow } from '@/components/layout/auth-background-slideshow';
+
 
 export default function SignupPage() {
   const [firstName, setFirstName] = useState('Anas');
@@ -49,20 +51,7 @@ export default function SignupPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden">
-       <div className="auth-background">
-        <ul className="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+       <AuthBackgroundSlideshow />
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}

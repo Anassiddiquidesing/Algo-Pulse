@@ -12,6 +12,7 @@ import { Logo } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
+import { AuthBackgroundSlideshow } from '@/components/layout/auth-background-slideshow';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('misssabasiddiqui@gmail.com');
@@ -45,24 +46,11 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden">
-      <div className="auth-background">
-        <ul className="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
+      <AuthBackgroundSlideshow />
       <motion.div
         initial={{ opacity: 0, scale: 0.9, y: -20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
