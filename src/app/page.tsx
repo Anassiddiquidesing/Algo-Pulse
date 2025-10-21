@@ -8,11 +8,8 @@ import { DollarSign, TrendingUp, TrendingDown, PackageOpen, ArrowUpRight } from 
 import { DashboardChart } from './dashboard-chart';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Whatsapp } from '@/components/icons';
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 
 export default function DashboardPage() {
-  const whatsappNumber = "820247990660848";
   return (
     <>
       <Header title="Dashboard" />
@@ -103,23 +100,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      <div className="fixed bottom-6 right-6 z-50">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button asChild size="icon" className="rounded-full w-14 h-14 bg-green-500 hover:bg-green-600 text-white shadow-lg">
-                <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer">
-                  <Whatsapp className="w-8 h-8" />
-                  <span className="sr-only">Chat on WhatsApp</span>
-                </a>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="left">
-              Chat on WhatsApp
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      </div>
     </>
   );
 }
