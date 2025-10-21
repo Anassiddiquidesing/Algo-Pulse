@@ -5,6 +5,36 @@
       "description": "User avatar",
       "imageUrl": "https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc1ODY5NTM3OHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person face"
+    },
+    {
+      "id": "auth-bg-1",
+      "description": "Abstract background with digital data streams",
+      "imageUrl": "https://images.unsplash.com/photo-1587620962725-abab7fe55159?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwcm9ncmFtbWluZ3xlbnwwfHx8fDE3MTc3NTQzMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data stream"
+    },
+    {
+      "id": "auth-bg-2",
+      "description": "Forex trading charts on a screen",
+      "imageUrl": "https://images.unsplash.com/photo-1640286599542-9a74ea4854f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb3JleCUyMHRyYWRpbmd8ZW58MHx8fHwxNzE3NzU0MzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "trading charts"
+    },
+    {
+      "id": "auth-bg-3",
+      "description": "Modern city skyline at night, representing finance",
+      "imageUrl": "https://images.unsplash.com/photo-1519120944632-7a049d58a5cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmdXR1cmlzdGljJTIwY2l0eXxlbnwwfHx8fDE3MTc3NTQzODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city skyline"
+    },
+    {
+      "id": "auth-bg-4",
+      "description": "Bull and bear figurines on a stock chart",
+      "imageUrl": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdG9jayUyMG1hcmtldHxlbnwwfHx8fDE3MTc3NTQ0MDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "stock market"
+    },
+    {
+      "id": "auth-bg-5",
+      "description": "Close-up of a stock market ticker board",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXRhJTIwYW5hbHlzaXN8ZW58MHx8fHwxNzE3NzU0NDMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data analysis"
     }
   ]
 }

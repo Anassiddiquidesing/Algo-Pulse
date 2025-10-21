@@ -12,6 +12,7 @@ import { Logo } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
+import { AuthBackgroundSlideshow } from '@/components/auth-background-slideshow';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('misssabasiddiqui@gmail.com');
@@ -45,8 +46,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4 overflow-hidden">
-      <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-900/80 via-purple-900/80 to-gray-900/80 animate-[gradient-x_15s_ease_infinite] z-0"></div>
-      <div className="absolute inset-0 z-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+      <AuthBackgroundSlideshow />
 
       <motion.div
         initial={{ opacity: 0, y: -20, scale: 0.95 }}
