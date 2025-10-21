@@ -12,7 +12,6 @@ import { Logo } from '@/components/icons';
 import { useToast } from '@/hooks/use-toast';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from 'lucide-react';
-import { AuthBackgroundSlideshow } from '@/components/auth-background-slideshow';
 
 export default function SignupPage() {
   const [email, setEmail] = useState('misssabasiddiqui@gmail.com');
@@ -45,9 +44,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background p-4 overflow-hidden">
-      <AuthBackgroundSlideshow />
-
+    <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden animated-gradient">
       <motion.div
         initial={{ opacity: 0, y: -20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -131,11 +131,23 @@ body {
 }
 
 .glass-card {
-  @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-lg;
+  @apply bg-card/60 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl;
 }
 
 @keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #141e30, #243b55);
+  background-size: 400% 400%;
+  animation: gradient-x 15s ease infinite;
 }
