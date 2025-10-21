@@ -46,17 +46,17 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden animated-gradient">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.9, y: -20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
             <motion.div
               className="mx-auto mb-4"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: 'spring', stiffness: 300, damping: 20 }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.1, type: 'spring', stiffness: 260, damping: 20 }}
             >
               <Logo />
             </motion.div>
