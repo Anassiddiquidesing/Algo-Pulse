@@ -49,9 +49,9 @@ export default function SignupPage() {
       <div className="absolute inset-0 z-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
 
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
@@ -59,7 +59,7 @@ export default function SignupPage() {
               className="mx-auto mb-4"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring' }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
             >
               <Logo />
             </motion.div>
