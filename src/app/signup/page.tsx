@@ -30,14 +30,12 @@ export default function SignupPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      // We are only passing email and password to Firebase Auth for creation.
-      // The name would typically be saved to a Firestore document with the user's UID.
       await initiateEmailSignUp(auth, email, password);
       toast({
         title: "Signup Successful",
         description: `Welcome, ${firstName}! Redirecting to your dashboard...`,
       });
-      setTimeout(() => router.push('/'), 1000);
+      router.push('/');
     } catch (error: any) {
       console.error("Sign up error", error);
        toast({
@@ -45,6 +43,7 @@ export default function SignupPage() {
         description: error.message || "An unexpected error occurred.",
         variant: 'destructive',
       });
+    } finally {
       setLoading(false);
     }
   };
@@ -53,9 +52,9 @@ export default function SignupPage() {
     <div className="flex min-h-screen items-center justify-center p-4 overflow-hidden">
        <AuthBackgroundSlideshow />
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <Card className="w-full max-w-md z-20 glass-card">
           <CardHeader className="text-center">
@@ -63,7 +62,7 @@ export default function SignupPage() {
               className="mx-auto mb-4"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.1, type: 'spring', stiffness: 260, damping: 20 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 260, damping: 20 }}
             >
               <Logo />
             </motion.div>

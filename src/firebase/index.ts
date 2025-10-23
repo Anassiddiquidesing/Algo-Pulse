@@ -2,7 +2,7 @@
 
 import { firebaseConfig } from '@/firebase/config';
 import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { Auth, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore'
 
 // IMPORTANT: DO NOT MODIFY THIS FUNCTION
@@ -40,11 +40,22 @@ export function getSdks(firebaseApp: FirebaseApp) {
   };
 }
 
+
+/** Initiate email/password sign-up (non-blocking). */
+export async function initiateEmailSignUp(authInstance: Auth, email: string, password: string) {
+  return await createUserWithEmailAndPassword(authInstance, email, password);
+}
+
+/** Initiate email/password sign-in (non-blocking). */
+export async function initiateEmailSignIn(authInstance: Auth, email: string, password: string) {
+  return await signInWithEmailAndPassword(authInstance, email, password);
+}
+
+
 export * from './provider';
 export * from './client-provider';
 export * from './firestore/use-collection';
 export * from './firestore/use-doc';
 export * from './non-blocking-updates';
-export * from './non-blocking-login';
 export * from './errors';
 export * from './error-emitter';
